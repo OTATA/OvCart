@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Cart
  * 
@@ -25,7 +26,7 @@ class Cart {
         }
         $this->storage->setName($this->name);
     }
-    
+
     public function addItem(Item $item) {
         $this->storage->add($this->patternKey($item), serialize($item));
         return $this;
@@ -51,8 +52,13 @@ class Cart {
     public function getItemById($id) {
         return unserialize($this->storage->get($this->name . '_' . $id));
     }
-    
+
     public function emptyCart() {
         $this->storage->removeAll();
     }
+
+    public function setSessionHandler($handler) {
+        $this->storage->setSessionHandler($handler);
+    }
+
 }
