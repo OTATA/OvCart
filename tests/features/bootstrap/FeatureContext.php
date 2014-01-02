@@ -58,7 +58,17 @@ class FeatureContext extends BehatContext {
     public function euAdicionoEsseItemNoCarrinho() {
         $this->cartManager->cart()->addItem($this->item);
     }
-
+    
+    /**
+     * 
+     * @When /^Eu adiciono os itens no carrinho$/
+     */
+    
+    public function euAdicionoOsItensNoCarrinho() {
+        foreach ($this->items as $item) {
+            $this->cartManager->cart()->addItem($item);
+        }
+    }
     /**
      * @Then /^o item deve estar no carrinho$/
      */

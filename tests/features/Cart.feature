@@ -15,17 +15,14 @@ Scenario: Remover item
 
 Scenario: Adicionar varios itens no carrinho
     Given Eu escolhi o item "Camisa Puma"
-    When  Eu adiciono esse item no carrinho
      And  Eu escolhi o item "Calça jeans"
-     And  Eu adiciono esse item no carrinho
      And  Eu escolhi o item "Tenis nerd"
-     And  Eu adiciono esse item no carrinho
+    When  Eu adiciono os itens no carrinho
     Then  os itens devem estar no carrinho
 
 Scenario: Limpar carrinho
     Given Eu escolhi o item "Camisa Velha"
-    When  Eu adiciono esse item no carrinho
      And  Eu escolhi o item "Luva de lã"
-     And  Eu adiciono esse item no carrinho
+    When  Eu adiciono os itens no carrinho
      And  Eu esvazio o carrinho
     Then  não deve ter nenhum item  
