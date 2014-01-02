@@ -26,4 +26,8 @@ class CartManager {
     public function cart() {
         return $this->cart;
     }
+    
+    public function useFileSesionHandler() {
+        $this->cart->setSessionHandler(Storage\SessionStorage::FILE_HANDLER);
+    }
 }
