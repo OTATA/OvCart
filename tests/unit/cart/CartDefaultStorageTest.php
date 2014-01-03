@@ -73,18 +73,4 @@ class CartDefaultStorageTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertEquals($this->cart->getItemById(100)->getId(), $item1->getId());
     }
-
-    public function testSetSessionHandler() {
-
-        $sessionStorageMock = $this->getMockBuilder('OvCart\Storage\SessionStorage')
-                ->disableOriginalConstructor()
-                ->getMock();
-
-        $cart = new Cart('Test', $sessionStorageMock);
-
-        $sessionStorageMock->expects($this->once())->method('setSessionHandler');
-
-        $cart->setSessionHandler(\OvCart\Storage\SessionStorage::FILE_HANDLER);
-    }
-
 }
