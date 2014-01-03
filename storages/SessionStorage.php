@@ -1,36 +1,55 @@
 <?php
-
 /**
- * Description of FIleStorage
- *
- *  @author Otavio Carvalho <otaviolcarvalho@gmail.com>
+ * Session Storage
+ * 
+ * Use the session to storage the datas of cart
  * 
  */
 
 namespace OvCart\Storage;
+use OvCart\Storage\ICartStorage;
 
-use OvCart\Handlers\FileSessionHandler;
+abstract class SessionStorageAbstract implements ICartStorage {
 
-class SessionStorage extends SessionStorageAbstract {
+    private $session;
+    private $name;
 
-    CONST FILE_HANDLER = "FileSessionHandler";
-    CONST DEFAULT_HANDLER = "default";
-
-    public function __construct($name = 'default', $handler = 'default') {
-        $this->setSessionHandler($handler);
-        parent::__construct($name);
+    public function __construct($name = 'default') {
+        $this->session = &$_SESSION;
+        $this->name = $name;       
     }
 
-    public function setSessionHandler($handler) {
-        switch ($handler) {
-            case self::FILE_HANDLER:
-                parent::setSessionHandler(new FileSessionHandler());
-                break;
-            case $handler instanceof \SessionHandlerInterface:
-                parent::setSessionHandler($handler);
-                break;
-            default:               
-                break;
+    public function add($name, $value) {
+        $this->session[$this->name][$name] = $value;
+        return $this;
+    }
+
+    public function remove($name) {
+        unset($this->session[$this->name][$name]);
+        return $this;
+    }
+
+    public function getAll() {
+        return $this->session[$this->name];
+    }
+
+    public function get($key) {
+        $data = $this->getAll();
+        if(isset($data[$key])) {
+            return $data[$key];
         }
+        return false;
     }
-}
+    
+    public function removeAll() {
+        $this->session[$this->name] = array();
+    }
+    
+    public function setSessionHandler(\SessionHandlerInterface $sessionHandler) {
+        session_set_save_handler($sessionHandler, true);        
+    }    
+    
+    public function setName($name) {
+        $this->name = $name;
+    }
+} 
