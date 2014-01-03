@@ -42,4 +42,9 @@ class SessionStorageTest extends \PHPUnit_Framework_TestCase {
         $this->sessionStorage->removeAll();
         $this->assertCount(0, $this->sessionStorage->getAll());
     }
+    
+    public function testSetSessionHandler() {
+        $this->sessionStorage->setSessionHandler(SessionStorage::FILE_HANDLER);
+        $this->assertInstanceOf('OvCart\Handlers\FileSessionHandler',$this->sessionStorage->getSessionHandler());
+    }
 }
