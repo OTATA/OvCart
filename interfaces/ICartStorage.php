@@ -12,4 +12,6 @@ interface ICartStorage {
     function getAll();
     function get($key);
     function removeAll();
+    function setSessionHandler($handler);
+    function setName($name);
 }
