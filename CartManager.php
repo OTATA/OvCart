@@ -11,7 +11,7 @@ class CartManager {
 
     private $cart;
     
-    public function __construct($name, Cart $cart = null) {
+    public function __construct($name, AbstractCart $cart = null) {
         $this->cart = $cart;
 
         if (is_null($cart)) {

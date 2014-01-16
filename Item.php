@@ -15,6 +15,7 @@ class Item {
     
     public function seId($id) {
         $this->id = (int) $id;
+        return $this;
     }
 
     public function getId() {
@@ -22,6 +23,7 @@ class Item {
     }
     public function setName($name) {
         $this->name = $name;
+        return $this;
     }
 
     public function getName() {
