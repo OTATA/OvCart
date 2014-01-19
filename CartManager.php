@@ -6,6 +6,7 @@
  * 
  */
 namespace OvCart;
+use OvCart\Factories\CartFactory;
 
 class CartManager {
 
@@ -15,10 +16,9 @@ class CartManager {
         $this->cart = $cart;
 
         if (is_null($cart)) {
-            $this->cart = new Cart($name);
+            $this->cart = CartFactory::get('OvCart\Cart', [$name]);
         }
     }
-
     /**
      * 
      * @return Cart

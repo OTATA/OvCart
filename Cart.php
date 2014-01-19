@@ -10,15 +10,14 @@
 namespace OvCart;
 
 use OvCart\Item;
-use OvCart\Storage\SessionStorage;
-use OvCart\Storage\ICartStorage;
+use OvCart\Factories\StorageFactory;
 
 class Cart extends AbstractCart {
 
     public function __construct($name, ICartStorage $storage = null) {
         
         if(null === $storage) {
-            $storage = new SessionStorage();
+            $storage = StorageFactory::get('OvCart\Storage\SessionStorage');
         }
         parent::__construct($name, $storage);
     }
