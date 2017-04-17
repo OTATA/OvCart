@@ -1,4 +1,5 @@
 OvCart
 ======
 
-Flexible cart, example applications of design, bdd, tdd etc..
+Flexible cart, fxample of desing, tdd, bdd implementation
+.
